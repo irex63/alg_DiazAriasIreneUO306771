@@ -14,7 +14,7 @@ def bucle4(n):
 def main():
     print("TIEMPO= MILISEGUNDOS")
     t1, t2, n = 0, 0, 100
-    for _ in range(10):
+    for _ in range(10): ##En caso de no tener que usar el iterador
         t1 = time()
         c = bucle4(n)
         t2 = time()

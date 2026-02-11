@@ -1,17 +1,17 @@
 package p12;
 
 public class Bucle2 {
-	public static long bucle2(long n) {
+	public static long bucle2(long n) { //O(n^2*log (n))
 		long cont = 0;
 		long n1 = n;
-		do {
-			for (long i = 1; i <= n; i++) {
-				for (long j = n; j >= 0; j -= 2) {
+		do { 
+			for (long i = 1; i <= n; i++) { //O(n)			//O(n^2)
+				for (long j = n; j >= 0; j -= 2) {//O(n/2)
 					cont++;
 				}
 			}
 			n1 = n1 / 3;
-		} while (n1 >= 1);
+		} while (n1 >= 1); //O(log3 (n))
 
 		return cont;
 	}

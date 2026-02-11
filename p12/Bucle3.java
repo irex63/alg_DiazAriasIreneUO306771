@@ -1,13 +1,16 @@
 package p12;
 
 public class Bucle3 {
-	public static long bucle3(long n) {
+	public static long bucle3(long n) { //Tarda un poco más que bucle3
 		long cont = 0;
 		long n1 = n;
+		//Sumatorio desde i=1 hasta 2*n
+		// i/2 * log2 (n)
+		// Podemos sacar las ctes: log2 n/2*Sum(i) 
 		long i = 1;
-		while (i <= 2 * n) {
-			for (long j = i; j >= 0; j -= 2) {
-				for (long k = 1; k <= n; k *= 2) {
+		while (i <= 2 * n) { //O(n)
+			for (long j = i; j >= 0; j -= 2) { //O(i/2) : O(n)
+				for (long k = 1; k <= n; k *= 2) { //O(log2 (n))
 					cont++;
 				}
 			}

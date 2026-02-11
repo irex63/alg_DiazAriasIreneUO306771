@@ -1,17 +1,15 @@
 package p12;
 
-public class Bucle4 {
+public class Bucle6 {
 
-	public static long bucle4(int n) { //O(n^3) : O(2*n^3/3)
-		//Sumatorios :
-		// Sum i=1 hasta n (Sum j=1 hasta i (Sum k hasta j(1)))
-		//Sumatorio de una constante :
-		// Sum i=m hasta n (c) = c*(n-m+1)
+	public static long bucle6(int n) { //O(n^3 * log2 (n))
 		long cont = 0;
 		for (int i = 1; i <= n; i++) { //O(n)
 			for (int j = 1; j <= i; j++) { //O(n)
-				for (int k = 1; k <= j; k++) { //O(n)
-					cont++;
+				for (int m = 1; m <= j; m++) { //O(n)
+					for (int k = 1; k <= k; k*=2) { //O(log (n))
+						cont++;
+					}
 				}
 			}
 		}
@@ -27,11 +25,11 @@ public class Bucle4 {
 
 		System.out.println("n\ttiempo\trepeticiones\tcontador");
 
-		for (int n = 100; n <= 819200; n *= 2) {
+		for (int n = 5; n <= 819200; n *= 2) {
 			t1 = System.currentTimeMillis();
 
 			for (int repeticiones = 1; repeticiones <= nVeces; repeticiones++){
-				c = bucle4(n);
+				c = bucle6(n);
 			}
 			t2 = System.currentTimeMillis();
 

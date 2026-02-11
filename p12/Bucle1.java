@@ -1,11 +1,11 @@
 package p12;
 
 public class Bucle1 {
-	public static long bucle1(long n) {
+	public static long bucle1(long n) { //O(n*log (n))
 		long cont = 0;
 		long n1 = 1;
-		while (n1 <= n * n) {
-			for (long i = 1; i <= 2 * n; i += 3) {
+		while (n1 <= n * n) { //O(log3 (n^2)) = O (2*log3 (n))
+			for (long i = 1; i <= 2 * n; i += 3) {//O(n)
 				cont++;
 			}
 			n1 = 3 * n1;
