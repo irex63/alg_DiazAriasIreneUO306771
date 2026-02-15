@@ -25,7 +25,7 @@ public class Bucle6 {
 
 		System.out.println("n\ttiempo\trepeticiones\tcontador");
 
-		for (int n = 5; n <= 819200; n *= 2) {
+		for (int n = 1; n <= 819200; n += 2) {
 			t1 = System.currentTimeMillis();
 
 			for (int repeticiones = 1; repeticiones <= nVeces; repeticiones++){
