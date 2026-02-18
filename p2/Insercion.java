@@ -8,6 +8,7 @@ public class Insercion {
 	static int[] v;
 
 	/* Ordenacion por el metodo de Insercion */
+	//No tiene el cuenta el número de inserciones que se realizan
 	public static void insercion(int[] a) {
 		int n = a.length;
 		for (int i = 1; i <= n - 1; i++) {

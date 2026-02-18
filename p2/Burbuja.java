@@ -1,13 +1,13 @@
 package p2;
 
 /* Este programa sirve para ordenar n elementos con un algoritmo cuadratico
-( BURBUJA O INTERCAMBIO DIRECTO */
+( BURBUJA O INTERCAMBIO DIRECTO )*/
 
 public class Burbuja {
 	static int[] v;
 
 	/* Ordenacion por el metodo de Burbuja */
-	public static void burbuja(int[] a) {
+	public static void burbuja(int[] a) { //O(n^2)
 		int n = a.length;
 		int x;
 		for (int i = 0; i <= n - 2; i++)

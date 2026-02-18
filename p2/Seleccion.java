@@ -7,16 +7,18 @@ public class Seleccion {
 	static int[] v;
 
 	/* Ordenacion por el metodo de Seleccion */
-	public static void seleccion(int[] a) {
+	//Ordena haciendo el menor número de inserciones posibles
+	public static void seleccion(int[] a) { //O(n^2)
 		int n = a.length;
 		int x;
 		int posmin;
-		for (int i = 0; i < n - 1; i++) { // Buscar la posicion del mas pequenno de los que quedan
+		//No suelen cambiar mucho los tiempo independientemente del orden del vector
+		for (int i = 0; i < n - 1; i++) { // Buscar la posicion del mas pequeño de los que quedan
 			posmin = i;
 			for (int j = i + 1; j < n; j++)
 				if (a[j] < a[posmin])
 					posmin = j;
-			// Intercambia el que toca con el mas peque�o
+			// Intercambia el que toca con el mas pequeño
 			x = a[posmin];
 			a[posmin] = a[i];
 			a[i] = x;
