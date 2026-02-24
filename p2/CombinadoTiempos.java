@@ -1,5 +1,7 @@
 package p2;
 
+
+
 /* Esta clase mide tiempos del metodo Burbuja
 para los 3 supuestos de orden inicial (ordenado, inverso y aleatorio)
 en el comando de ejecucion hay que poner la opcion elegida y
@@ -26,12 +28,17 @@ public class CombinadoTiempos {
 				else
 					Vector.ordenAleatorio(v);
 
-				t1 = System.currentTimeMillis();
-				Rapido.rapido(v);
-				t2 = System.currentTimeMillis();
+				if(n<40){
+					t1 = System.currentTimeMillis();
+					Insercion.insercion(v);
+					t2 = System.currentTimeMillis();	
+				} else {
+					t1 = System.currentTimeMillis();
+					Rapido.rapido(v);
+					t2 = System.currentTimeMillis();
+				}
 				t = t + (t2 - t1);
 			}
-
 			System.out.println("n=" + n + "\tTiempo=" + t + "  \tRepeticiones=" + repeticiones);
 		}
 	}
