@@ -1,29 +1,35 @@
 package p3;
 
-public class Sustraccion3
+public class Division3
 {
 
 static long cont;
 
 public static void rec3 (int n)
-{
-	if (n<=0) 
-		cont++;
-	else
 	{
-		cont++;   // O(1)    
-		rec3 (n-1);
-		rec3 (n-1);
+		// a=2
+		// b=2
+		// k=0
+		// a>b^k
+		// Complejidad : O(n^log2(2))=O(n)
+		if (n<=0) 
+			cont++;
+		else
+		{ 
+			cont++ ; // O(1)    
+			rec3 (n/2);
+			rec3 (n/2);
+		}
+		   
 	}
-}
-
+	
 
 public static void main (String arg []) 
 {
 	long t1,t2,cont;
 	int nVeces= Integer.parseInt (arg [0]);
-	 
-	for (int n=20;n<=100;n++)
+
+	for (int n=1000000;n<=1024000000;n*=2)
 	{
 		t1 = System.currentTimeMillis ();
 
@@ -36,6 +42,8 @@ public static void main (String arg [])
 		t2 = System.currentTimeMillis ();
 
 		System.out.println (" n="+n+ "**TIEMPO="+(t2-t1)+"**nVeces="+nVeces);
+
 	}  // for
+
 } // main
 } //class

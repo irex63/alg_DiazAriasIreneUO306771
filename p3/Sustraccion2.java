@@ -5,7 +5,7 @@ public class Sustraccion2
 
 static long cont;
 
-public static void rec2 (int n)
+public static void rec2 (int n) // O(n^2)
 {
 	if (n<=0) 
 		cont++;

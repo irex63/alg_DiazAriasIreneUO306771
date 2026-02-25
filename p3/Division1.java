@@ -7,6 +7,11 @@ static long cont;
 
 public static void rec1 (int n)
 { 
+	// a=1
+	// b=3
+	// k=1
+	// a<b^k
+	// Complejidad : O(n)
 	if (n<=0) 
 		cont++;
 	else
