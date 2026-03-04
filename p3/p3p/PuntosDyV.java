@@ -17,21 +17,13 @@ public class PuntosDyV {
 
         String nombreFichero = args[0];
         List<Punto> puntos = leerPuntos(nombreFichero);
-        puntos.sort((p1,p2) -> Double.compare(p1.x, p2.x));
+        puntos.sort((p1, p2) -> Double.compare(p1.x, p2.x));
         if (puntos.isEmpty())
             return;
 
         System.out.println(nombreFichero);
 
-        // for (int i = 0; i < result.size(); i += 2) {
-        // Punto p1 = result.get(i);
-        // Punto p2 = result.get(i + 1);
-
-        // System.out.printf("PUNTOS MAS CERCANOS: [%.6f, %.6f] [%.6f, %.6f]%n",
-        // p1.x, p1.y, p2.x, p2.y);
-        // }
-
-        double dist = puntosDyV(puntos);
+        double dist = puntosDyVOptimizado(puntos, 0, puntos.size() - 1);
         System.out.printf("SU DISTANCIA MINIMA= %.6f%n", dist);
     }
 
@@ -49,47 +41,23 @@ public class PuntosDyV {
         }
     }
 
-    /**
-     * Solo funcionaria con una lista de puntos ordenados por distancia entre ellos
-     * a=2 //Número de llamadas recursivas
-     * b=2 //Número entre el que se divide el problema
-     * k=0 //Complejidad del algoritmo sin tener en cuenta la recursividad
-     * Complejidad (Sin tener en cuenta ordenación) : O(n)
-     * 
-     * Falta la comprobación de la franja que son los valores que están en los
-     * limites de la lista
-     */
-    public static double puntosDyV(List<Punto> puntos) {
-        // Ordenar la lista por una de las dos coordenadas
 
-        int n = puntos.size();
-
-        if (n == 2) { // Si solo hay dos puntos en la lista devolvemos la distancia
-            return calcularDistancia(puntos.get(0), puntos.get(1));
+    public static double puntosDyVOptimizado(List<Punto> puntos, int izq, int der) {
+        // Tratamos los caso base
+        int numeroElem = (der - izq) + 1;
+        if (numeroElem < 2) {
+            return Double.MAX_VALUE;
+        } else if (numeroElem == 2) {
+            return calcularDistancia(puntos.get(izq), puntos.get(der));
         }
 
-        List<Punto> izquierda;
-        List<Punto> derecha;
-        double distFranja=Double.MAX_VALUE;
-        // Dividimos la lista en dos
-        // Si n==3 dividimos de forma especial para que no quede un punto suelto
-        if (n == 3) {
-            izquierda = puntos.subList(0, 2);
-            derecha = puntos.subList(1, 3);
-        } else {
-            int medio = n / 2;
-            izquierda = puntos.subList(0, medio);
-            derecha = puntos.subList(medio, n);
-            distFranja=calcularDistancia(puntos.get(medio-1), puntos.get(medio));
-        }
-        // Calculamos la distancia mínima de cada lado
-        double distIzq = puntosDyV(izquierda);
-        double distDer = puntosDyV(derecha);
+        int medio = (der + izq) / 2;
+        double distFranja = calcularDistancia(puntos.get(medio), puntos.get(medio+1));
+        double distIzq = puntosDyVOptimizado(puntos, izq, medio);
+        double distDer = puntosDyVOptimizado(puntos, medio + 1, der);
 
-        // Comprobar las franjas de la división
-        
         // Devolvemos el valor más pequeño
-        return Math.min(distFranja,Math.min(distIzq, distDer));
+        return Math.min(distFranja, Math.min(distIzq, distDer));
     }
 
     /**
@@ -128,7 +96,7 @@ public class PuntosDyV {
             }
         } catch (IOException | NumberFormatException e) {
             System.err.println("Error al leer el fichero: " + e.getMessage());
-        } 
+        }
         return lista;
     }
 }
