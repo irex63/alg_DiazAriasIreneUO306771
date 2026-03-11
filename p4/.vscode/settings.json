@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "ProyectoColorear\\src"
+    ],
+    "java.project.referencedLibraries": [
+        "ProyectoColorear\\lib\\json-simple-1.1.1.jar"
+    ]
+}
