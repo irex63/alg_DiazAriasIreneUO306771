@@ -11,12 +11,14 @@ import org.json.simple.parser.ParseException;
 public class Devorador {
 	public static void main(String[] args) {
 		JSONParser parser = new JSONParser();
-		try (FileReader reader = new FileReader("grafo.json")) {
+		try (FileReader reader = new FileReader("sols/g8.json")) {
+
 			JSONObject jsonObject = (JSONObject) parser.parse(reader);
 			@SuppressWarnings("unchecked")
 			Map<String, List<String>> grafo = (Map<String, List<String>>) jsonObject.get("grafo");
 
 			Map<String, String> solucion = ColoreoGrafo.realizarVoraz(grafo);
+			
 			try (FileWriter file = new FileWriter("solucion.json")) {
 				file.write(new JSONObject(solucion).toJSONString());
 			}

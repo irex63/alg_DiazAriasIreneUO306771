@@ -20,7 +20,7 @@ public static void main (String arg [])
 	long t1,t2,cont;
 	int nVeces= Integer.parseInt (arg [0]);
 	
-	for (int n=1000;n<=1024000;n*=2)
+	for (int n=1024;n<=1024000;n*=2)
 	{
 		t1 = System.currentTimeMillis ();
 

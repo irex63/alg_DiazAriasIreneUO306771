@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class PuntosTrivialTiempos {
+public class PuntosDyVTiempos {
 
     public static void main(String[] args) {
 
@@ -16,13 +16,14 @@ public class PuntosTrivialTiempos {
 
         for (int n = 1024; n <= 1024000; n *= 2) {
             List<Punto> puntos = generarPuntosAleatorios(n);
-
+            
             t1 = System.currentTimeMillis();
 
-            puntosIterativo(puntos);
+            double dist=puntosDyV(puntos,0,puntos.size()-1);
 
             t2 = System.currentTimeMillis();
 
+            System.out.println("DIST MINIMA ENCONTRADA " + dist);
             System.out.println(" n=" + n + "**TIEMPO=" + (t2 - t1));
         } // for
     }
@@ -53,42 +54,24 @@ public class PuntosTrivialTiempos {
     }
 
 
-    public static List<Punto> puntosIterativo(List<Punto> puntos) { //O(n^2)
-        ArrayList<Punto> result=new ArrayList<>();
-        int n = puntos.size();
-        if (n <= 2) { // Si hay 2 o menos puntos retornamos
-            return new ArrayList<>(puntos);
-        }
-        
-        //Tomamos como puntos iniciales los dos primeros
-        Punto p1Min = puntos.get(0);
-        Punto p2Min = puntos.get(1);
-        double distMinima = calcularDistancia(p1Min, p2Min);
-
-        result.add(p1Min);
-        result.add(p2Min);
-
-        for (int i = 0; i < n; i++) {//O(n)
-            for (int j = i + 1; j < n; j++) {// O(n)
-                // 1 Calculamos la distancia entre los mínimos
-                double d = calcularDistancia(puntos.get(i), puntos.get(j));
-                // 2 Si es menor actualizamoss la distancia mínima
-                if (d < distMinima) {
-                    distMinima = d;
-                    //Reiniciamos los datos de la lista
-                    result.clear(); 
-                    result.add(puntos.get(i));
-                    result.add(puntos.get(j));
-                } else if (Double.compare(d, distMinima) == 0) {
-                    // 3 Si es igual añadimos a la lista sin actualizar la distancia mínima
-                    result.add(puntos.get(i));
-                    result.add(puntos.get(j));
-                }
-            }
+    public static double puntosDyV(List<Punto> puntos, int izq, int der) {
+        // Tratamos los caso base
+        int numeroElem = (der - izq) + 1;
+        if (numeroElem < 2) {
+            return Double.MAX_VALUE;
+        } else if (numeroElem == 2) {
+            return calcularDistancia(puntos.get(izq), puntos.get(der));
         }
 
-        return result;
+        int medio = (der + izq) / 2;
+        double distFranja = calcularDistancia(puntos.get(medio), puntos.get(medio + 1));
+        double distIzq = puntosDyV(puntos, izq, medio);
+        double distDer = puntosDyV(puntos, medio + 1, der);
+
+        // Devolvemos el valor más pequeño
+        return Math.min(distFranja, Math.min(distIzq, distDer));
     }
+
     /**
      * Calcula la distancia entre dos puntos dados
      * @param p1

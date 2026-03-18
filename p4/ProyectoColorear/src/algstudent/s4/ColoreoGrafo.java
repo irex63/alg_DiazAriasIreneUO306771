@@ -1,14 +1,15 @@
 package algstudent.s4;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ColoreoGrafo {
 
-    private static ArrayList<String> colores;
-    private static int maxColor=colores.size();
+    private static ArrayList<String> colores = new ArrayList<>(Arrays.asList(
+            "red", "blue", "green", "yellow", "orange", "purple", "cyan", "magenta", "lime"));
 
 
     /**
@@ -20,19 +21,29 @@ public class ColoreoGrafo {
      */
     public static Map<String, String> realizarVoraz(Map<String, List<String>> grafo){
         Map<String, String> result= new HashMap<>();
-        //Recorremos todos las entradas de la tabla, es decir, todos los nodos del grafo
-        for(String nodoActual : grafo.keySet()){
+        //Recorremos todos los nodos del grafo
+        for(String nodoActual : grafo.keySet()){ //0(n)
             //Visitamos los vecinos del nodos
             List<String> vecinos=grafo.get(nodoActual);
-            //Miramos que colores no están disponibles para nuestro nodoActual
-            //Para marcar esas disponibilidades 
-            Boolean[] disponibilidad=new Boolean[maxColor];
-            for(String vecino:vecinos){
-                if(result.containsKey(vecino)){
+            //Creamos una copia de los colores disponibles
+            List<String> disponibles=new ArrayList<String> (colores);
+            //Buscamos quitar los colores no válidos de dentro de la lista de disponibles
+            for (Object vecinoObj : vecinos) {
+                //Vecino actual
+                String vecino = String.valueOf(vecinoObj);
+                //Si el vecino ya fue pintado
+                if(result.containsKey(vecino)){ 
+                    //Obtenemos su color
                     String color= result.get(vecino);
+                    //Quitamos el color de la lista de disponibles
+                    if(disponibles.contains(color)){
+                        disponibles.remove(color);
+                    }
                 }
             }
+            //Ahora disponibles.get(0) tiene el color que debemos poner a nuestro nodo
+            result.put(nodoActual,disponibles.get(0));
         }
-        return null;
+        return result;
     }
 }

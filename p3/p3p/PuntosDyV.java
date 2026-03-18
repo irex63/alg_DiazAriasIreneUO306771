@@ -17,13 +17,15 @@ public class PuntosDyV {
 
         String nombreFichero = args[0];
         List<Punto> puntos = leerPuntos(nombreFichero);
+
         puntos.sort((p1, p2) -> Double.compare(p1.x, p2.x));
+        
         if (puntos.isEmpty())
             return;
 
         System.out.println(nombreFichero);
 
-        double dist = puntosDyVOptimizado(puntos, 0, puntos.size() - 1);
+        double dist = puntosDyV(puntos, 0, puntos.size() - 1);
         System.out.printf("SU DISTANCIA MINIMA= %.6f%n", dist);
     }
 
@@ -42,7 +44,7 @@ public class PuntosDyV {
     }
 
 
-    public static double puntosDyVOptimizado(List<Punto> puntos, int izq, int der) {
+    public static double puntosDyV(List<Punto> puntos, int izq, int der) {
         // Tratamos los caso base
         int numeroElem = (der - izq) + 1;
         if (numeroElem < 2) {
@@ -53,8 +55,8 @@ public class PuntosDyV {
 
         int medio = (der + izq) / 2;
         double distFranja = calcularDistancia(puntos.get(medio), puntos.get(medio+1));
-        double distIzq = puntosDyVOptimizado(puntos, izq, medio);
-        double distDer = puntosDyVOptimizado(puntos, medio + 1, der);
+        double distIzq = puntosDyV(puntos, izq, medio);
+        double distDer = puntosDyV(puntos, medio + 1, der);
 
         // Devolvemos el valor más pequeño
         return Math.min(distFranja, Math.min(distIzq, distDer));
