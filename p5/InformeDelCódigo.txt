@@ -1,0 +1,24 @@
+Proyecto Ferry 
+
+1. Definición de Estado:
+Cada columna representa el número de metros que están siendo ocupados en babor
+y las filas indican que coches se quiere meter dentro de ese lado del barco. 
+Si una casilla (fila,colum) es verdadera significa que para el número de metros
+de la columna cabe el coche correspondiente a la fila dónde se encuentra.
+
+2. Relación de recurrnnecia:
+Primero definimos el caso base, sabemos que la primera casilla dp[0][0]= true y el 
+resto de la fila es false ya que para cero coches no se van a ocupar más metros.
+
+Para cada coche i y longitud L tenemos dos casos
+
+1. Hay sitio en babor : l + vehiculo(i-1) <= boatLength 
+	Sabemos que el coche i cabe para la longitud calculada ( l + vehiculo(i-1) ) 
+	por lo que d[i][l + vehiculo(i-1)]=true
+	
+2. Hay sitio en estribor: sumatorio[i] - l <= boatLength
+	Sabemos que el coche i para longitud l entra en estribor por lo que 
+	dp[i][l] = true;
+	
+La ejecución para cuando no entra nigún coche más para la longitud establecida 
+incialmente. 
