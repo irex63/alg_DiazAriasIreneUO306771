@@ -1,0 +1,8 @@
+Para archivo: casosPrueba/test00.txt	Tiempo: 0 ms
+Para archivo: casosPrueba/test01.txt	Tiempo: 0 ms
+Para archivo: casosPrueba/test02.txt	Tiempo: 14 ms
+Para archivo: casosPrueba/test03.txt	Tiempo: 0 ms
+Para archivo: casosPrueba/test04.txt	Tiempo: 1711 ms
+Para archivo: casosPrueba/test05.txt	Tiempo: 209026 ms
+Para archivo: casosPrueba/test06.txt	Tiempo: 8 ms
+Para archivo: casosPrueba/test07.txt	Tiempo: 0 ms
