@@ -67,10 +67,6 @@ public class AlmacenajeContenedoresRyP {
 
     }
 
-    private int calcularMejorKInicial() {
-        return (sumatorioObjetos() + capacidadMaxima - 1) / capacidadMaxima;
-    }
-
     private int sumatorioObjetos() {
         int res = 0;
         for (int i = 0; i < objetos.length; i++) {
