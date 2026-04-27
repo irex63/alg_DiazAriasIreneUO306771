@@ -45,7 +45,7 @@ public class AlmacenajeContenedores {
     // Matriz para guardar estados: [cont][obj]
     private int[][] asignacionActual;
 
-    // Soluciones encontrada
+    // Solución encontrada
     private int mejorK;
     private int[][] mejorAsignacion;
     private int[] mejorContadores;
@@ -81,11 +81,8 @@ public class AlmacenajeContenedores {
         // Sumamos el número de llamadas
         numLlamadas++;
 
-        // Si ya superamos el mejor número de contenedores, no seguimos
-        // if (contedoresUsados >= mejorK)
-        // return;
-
         // Todos los objetos están dentro de los contenedores
+        // El estado actual es solución
         if (objIdx == objetos.length) {
             // Si la solución usa menos cont que la actual mejor
             if (contedoresUsados < mejorK) {
@@ -120,10 +117,7 @@ public class AlmacenajeContenedores {
             }
         }
 
-        // Intentar colocar en nuevo contenedor
-        // if (contedoresUsados < mejorK - 1) {
-        // Solo si puede existir mejora
-
+        // Intentamos colocar el objeto en un contenedor nuevo
         // Cambiamos de estado
         cargaActual[contedoresUsados] = objetos[objIdx];
         asignacionActual[contedoresUsados][numeroActual[contedoresUsados]] = objetos[objIdx];

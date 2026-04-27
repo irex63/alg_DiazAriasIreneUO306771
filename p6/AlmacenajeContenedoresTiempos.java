@@ -77,14 +77,10 @@ public class AlmacenajeContenedoresTiempos {
         // Sumamos el número de llamadas
         numLlamadas++;
 
-        // // REALIZAMOS LA PODA
-        // if (contedoresUsados >= mejorK)
-        // return;
-
-        // Todos los objetos están dentro de los contenedores, es decir, el estado
-        // actual es solución
+        // Todos los objetos están dentro de los contenedores
+        // El estado actual es solución
         if (objIdx == objetos.length) {
-            // Si la solución usa menos contenedores que la actual
+            // Si la solución usa menos cont que la actual mejor
             if (contedoresUsados < mejorK) {
                 // Actualizamos la solución previa
                 mejorK = contedoresUsados;
@@ -92,12 +88,11 @@ public class AlmacenajeContenedoresTiempos {
             }
             return;
         }
-        // DOS OPCIONES :
-        // 1. Intentamos colocar en contenedores ya usados
+
+        // Intentamos colocar en contenedores ya usados
         for (int cont = 0; cont < contedoresUsados; cont++) {
             // Para cada contenedor
             int objectoActual = objetos[objIdx];
-
             if (cargaActual[cont] + objectoActual <= capacidadMaxima) {
                 // Si el objeto actual cabe dentro del contenedor
                 // Pasamos de estado y hacemos llamda recursiva
@@ -118,9 +113,7 @@ public class AlmacenajeContenedoresTiempos {
             }
         }
 
-        // 2. Intentar colocar en nuevo contenedor
-        // if (contedoresUsados < mejorK - 1) { // PODA : solo lo hacemos si puede haber
-        // mejora
+        // Intentamos colocar el objeto en un contenedor nuevo
         // Cambiamos de estado
         cargaActual[contedoresUsados] = objetos[objIdx];
         asignacionActual[contedoresUsados][numeroActual[contedoresUsados]] = objetos[objIdx];
@@ -132,6 +125,7 @@ public class AlmacenajeContenedoresTiempos {
         // Restauramos el estado
         numeroActual[contedoresUsados]--;
         cargaActual[contedoresUsados] = 0;
+
     }
 
     private void guardarSol(int k) {

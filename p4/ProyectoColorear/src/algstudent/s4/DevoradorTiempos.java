@@ -13,13 +13,13 @@ public class DevoradorTiempos {
 		JSONParser parser = new JSONParser();
 		long t1, t2;
 
-		for(int i=8;i<=65536;i*=2 ){
-			try (FileReader reader = new FileReader("sols/g"+i+".json")) {
+		for (int i = 8; i <= 65536; i *= 2) {
+			// Leemos el fichero
+			try (FileReader reader = new FileReader("sols/g" + i + ".json")) {
 
 				JSONObject jsonObject = (JSONObject) parser.parse(reader);
 				@SuppressWarnings("unchecked")
 				Map<String, List<String>> grafo = (Map<String, List<String>>) jsonObject.get("grafo");
-
 
 				t1 = System.currentTimeMillis();
 
@@ -34,7 +34,7 @@ public class DevoradorTiempos {
 				}
 
 				if (solucion != null) {
-					//System.out.println("Solución encontrada: " + solucion);
+					// System.out.println("Solución encontrada: " + solucion);
 				} else {
 					System.out.println("No se encontró solución.");
 				}
@@ -42,6 +42,6 @@ public class DevoradorTiempos {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 }
