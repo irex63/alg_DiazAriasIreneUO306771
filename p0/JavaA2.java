@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class JavaA2 {
 
-   //IMPLEMENTACIÓN DEL SEGUNDO ALGORITMO EN JAVA
+   // IMPLEMENTACIÓN DEL SEGUNDO ALGORITMO EN JAVA
    public static boolean primoA2(int m) {
-      for(int i=2;i<m;i++){
-         if(m%i==0){
+      for (int i = 2; i < m; i++) {
+         if (m % i == 0) {
             return false;
          }
       }
@@ -33,14 +33,17 @@ public class JavaA2 {
 
       System.out.println("TIEMPO EN JAVA DEL ALGORITMO A2");
 
-      long t1, t2; // obligatoriamente de tipo long para no desbordar
+      long t1, t2; // Obligatoriamente de tipo long para no desbordar
 
       for (int n = 5000; n <= 1000000; n *= 2) {
+
          t1 = System.currentTimeMillis(); // milisegundos (sin decimales)
 
-         listadoPrimos(n);
+         listadoPrimos(n); // Ejecución del algoritmo
 
          t2 = System.currentTimeMillis();
+
+         // Medimos inicio y final y para saber el tiempo
 
          System.out.println(t1 + "///" + t2);
 

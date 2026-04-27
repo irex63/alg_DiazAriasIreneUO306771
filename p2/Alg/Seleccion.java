@@ -6,14 +6,20 @@ package p2;
 public class Seleccion {
 	static int[] v;
 
-	/* Ordenacion por el metodo de Seleccion */
-	//Ordena haciendo el menor número de inserciones posibles
-	public static void seleccion(int[] a) { //O(n^2)
+	/**
+	 * Coge el valor más pequeño del vector y lo mueve al principio.
+	 * 
+	 * Complejidad : O(n^2)
+	 * 
+	 * Siempre tarda lo mismo independientemente de la disposición inicial del
+	 * vector
+	 */
+	public static void seleccion(int[] a) { // O(n^2)
 		int n = a.length;
 		int x;
 		int posmin;
-		//No suelen cambiar mucho los tiempo independientemente del orden del vector
-		for (int i = 0; i < n - 1; i++) { // Buscar la posicion del mas pequeño de los que quedan
+		// Buscar la posicion del mas pequeño de los que quedan
+		for (int i = 0; i < n - 1; i++) {
 			posmin = i;
 			for (int j = i + 1; j < n; j++)
 				if (a[j] < a[posmin])

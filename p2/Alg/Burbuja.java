@@ -1,19 +1,30 @@
 package p2;
 
-/* Este programa sirve para ordenar n elementos con un algoritmo cuadratico
-( BURBUJA O INTERCAMBIO DIRECTO )*/
-
 public class Burbuja {
+
 	static int[] v;
 
-	/* Ordenacion por el metodo de Burbuja */
-	public static void burbuja(int[] a) { //O(n^2)
+	/**
+	 * Recorre el vector de izquierda a derecha sin llegar al último (el último
+	 * elemento ya queda ordenado de forma automática) . Luego recorremos todos los
+	 * elementos desde el final hasta la posición actual en la que nos encontramos.
+	 * Si el valor anterior es menor que el actual intercambiamos.
+	 * 
+	 * Complejidad: O(n^2)
+	 * 
+	 * Comportamiento con distintas disposiciones del vector:
+	 * Ordenado : nunca va a realizar el intercambio de valores
+	 * Aleatorio : Caso medio
+	 * Orden Inverso : siempre se va a realizar el intercambio de valores
+	 * 
+	 * @param a vector a ordenar
+	 */
+	public static void burbuja(int[] a) {
 		int n = a.length;
 		int x;
-		for (int i = 0; i <= n - 2; i++)
-			for (int j = n - 1; j > i; j--)
-				if (a[j - 1] > a[j]) {
-					// intercambio de valores
+		for (int i = 0; i <= n - 2; i++) // Recorremos de 0-Penúltimo
+			for (int j = n - 1; j > i; j--) // Recorremos desde último-posActual
+				if (a[j - 1] > a[j]) { // Si anterior > actual intercambiamos
 					x = a[j - 1];
 					a[j - 1] = a[j];
 					a[j] = x;

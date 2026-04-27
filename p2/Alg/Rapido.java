@@ -5,6 +5,21 @@ package p2;
 public class Rapido {
 	static int[] v;
 
+	/**
+	 * Se divide el vector en dos mitades según un pivote. La mitad izquierda
+	 * contiene los valores menores que el pivote y la parte derecha el resto.
+	 * Cada mitad se vuelve a dividir según un pivote y así sucesivamente hasta
+	 * llegar a un solo elemento que ya se econtrará ordenado.
+	 * 
+	 * Complejidad : O(n*log n)
+	 * 
+	 * Casos según el pivote:
+	 * Pivote Equilibrado: O(n*log n)
+	 * Aleatorio: O(n*log n)
+	 * Pivote siempre mínimo o Máximo: O(n^2)
+	 * 
+	 * @param v
+	 */
 	public static void rapido(int[] v) {
 		rapirec(v, 0, v.length - 1);
 	}
